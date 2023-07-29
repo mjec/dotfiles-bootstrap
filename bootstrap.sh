@@ -2,7 +2,7 @@
 set -eu
 
 if command -v shopt > /dev/null; then
-# shellcheck disable=SC3044 # we're inside a command -v shopt check
+    # shellcheck disable=SC3044 # we're inside a command -v shopt check
     shopt expand_aliases
 fi
 
