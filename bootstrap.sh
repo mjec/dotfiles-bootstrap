@@ -123,6 +123,14 @@ dryrun git --git-dir="$GIT_DIR" --work-tree="$WORK_TREE" config --local status.s
 # in $WORK_TREE and its children, which can be resource intensive and slow
 dryrun git --git-dir="$GIT_DIR" --work-tree="$WORK_TREE" config --local core.fsmonitor false
 
+# Because we used `clone --bare`, we need to set the branch to fetch from
+# origin. We only fetch teh current branch, because we don't need to waste
+# space fetching alternative configurations.
+dryrun git --git-dir="$GIT_DIR" --work-tree="$WORK_TREE" config remote.origin.fetch "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"
+
+# Set our pull merge strategy to rebase
+dryrun git --git-dir="$GIT_DIR" --work-tree="$WORK_TREE" config pull.rebase true
+
 # There's a strong chance this will fail due to existing files that wil be
 # overwritten, but that's ok; leave it to the user to resolve
 dryrun git --git-dir="$GIT_DIR" --work-tree="$WORK_TREE" checkout "$BRANCH"
