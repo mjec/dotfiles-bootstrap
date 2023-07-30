@@ -3,7 +3,7 @@ set -eu
 
 if command -v shopt > /dev/null; then
     # shellcheck disable=SC3044 # we're inside a command -v shopt check
-    shopt expand_aliases
+    shopt -s expand_aliases
 fi
 
 # We only want to set +x if we start with it on; so we check whether `x` is NOT in `$-`
