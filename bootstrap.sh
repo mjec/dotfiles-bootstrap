@@ -57,6 +57,9 @@ fi
 previous_dir="$(pwd)"
 cd "$(dirname "$0")"
 
+# On exit, return to previous_dir
+trap 'cd "$previous_dir"' EXIT
+
 CURRENT_UPSTREAM_REMOTE="$(git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2> /dev/null | cut -d / -f 1 || true)"
 if [ -n "$CURRENT_UPSTREAM_REMOTE" ]; then
     DEFAULT_REPO="$(git remote get-url "$CURRENT_UPSTREAM_REMOTE")"
@@ -65,6 +68,10 @@ else
 fi
 
 cd "$previous_dir"
+
+# Remove exit trap as we are back to $previous_dir already
+trap - EXIT
+unset previous_dir
 
 set -x
 
