@@ -1,5 +1,9 @@
 # mjec's dotfiles
 
+## Archived
+
+This repository is archived because I now use [chezmoi](https://www.chezmoi.io/).
+
 ## Bootstrap repo
 
 This repository only contains the `bootstrap.sh` files, as I am too lazy to ensure there's no sensitive info in my dotfiles such that I can publish them. At some point I may do that, but for now, this repo contains just the relevant bootstrap script, designed to be pulled into another repo with branches for various dotfile setups, as described below.
